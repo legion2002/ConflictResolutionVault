@@ -1,26 +1,24 @@
 import React from "react";
 import Logo from "./DeJury.svg";
 import "./App.css";
-import { Typography, AppBar, MenuItem, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
+import { Typography, AppBar, MenuItem,InputLabel,Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
 import { ethers } from "ethers";
 import { getmerklerootfromarray } from "./utilities/merklecreator";
 
-const categoryDB = [
+const vote = [
     {
-        label: "AC Class",
-        value: 1
+      value: '1',
+      label: 'Buyer',
     },
     {
-        label: "Tier 1 Class",
-        value: 2
+      value: '0',
+      label: 'Seller',
     },
-    {
-        label: "Tier 2 Class",
-        value: 3
-    }
-]
+  ];
+
+
 console.log(getmerklerootfromarray([1, 2, 3, 4, 5]));
 const App = () => {
     // console.log(getmerklerootfromarray(['0x9452839582759284', '0x83927385273528537528']));
@@ -63,7 +61,7 @@ const App = () => {
                                             fontFamily: "Sans-Serif",
                                             textTransform: "None"
                                         }}
-                                            variant="text">Relations</Button>
+                                            variant="text">Buyer</Button>
                                     </Grid>
                                     <Grid item>
                                         <Button style={{
@@ -74,7 +72,7 @@ const App = () => {
                                             fontFamily: "Sans-Serif",
                                             textTransform: "None"
                                         }}
-                                            variant="text">Dispute</Button>
+                                            variant="text">Seller</Button>
                                     </Grid>
                                     <Grid item>
                                         <Button style={{
@@ -85,7 +83,7 @@ const App = () => {
                                             fontFamily: "Sans-Serif",
                                             textTransform: "None"
                                         }}
-                                            variant="text">About</Button>
+                                            variant="text">Jury</Button>
                                     </Grid>
                                     {/* <Grid item>
                                 <Button style={{
@@ -157,13 +155,11 @@ const App = () => {
                                 </Grid>
                             </Container>
 {/* @note: deploy contract and create order   */}
-
-                            <ContractDeployForm></ContractDeployForm>
                             <Container maxWidth='md' style={{
                                 marginTop: '80px',
                             }}>
                                 <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Create the Vault
+                                    Create Vault 
                                 </Typography>
                                 <Grid container spacing={0} align="center" justifyContent="center">
                                     <Grid item xs={0}>
@@ -183,15 +179,6 @@ const App = () => {
                                             backgroundColor: "#FFFFFF",
                                         }}
                                             id="outlined-basic" label="Seller Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0} >
-                                        <TextField style={{
-                                            width: "250px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Juror Keys (Optional)" variant="outlined" />
                                     </Grid>
                                     <Grid item xs={0}>
                                         <Button style={{
@@ -206,17 +193,20 @@ const App = () => {
                                     </Grid>
                                 </Grid>
                             </Container>
+
+{/* buyer */}
+                            <ContractDeployForm></ContractDeployForm>
                             <Container maxWidth='md' style={{
-                                marginTop: '40px',
+                                marginTop: '20px',
                             }}>
                                 <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Enter the Vault
+                                    Create New Order
                                 </Typography>
                                 <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0} >
+                                    <Grid item xs={0}>
                                         <TextField style={{
-                                            width: "250px",
-                                            height: "55px",
+                                            // width: "50px",
+                                            // height: "55px",
                                             fontSize: "14px",
                                             backgroundColor: "#FFFFFF",
                                         }}
@@ -224,37 +214,263 @@ const App = () => {
                                     </Grid>
                                     <Grid item xs={0} >
                                         <TextField style={{
-                                            width: "250px",
-                                            height: "55px",
+                                            // width: "50px",
+                                            // height: "55px",
                                             fontSize: "14px",
                                             backgroundColor: "#FFFFFF",
                                         }}
                                             id="outlined-basic" label="Seller Key" variant="outlined" />
                                     </Grid>
+                                    <Grid item xs={0} >
+                                        <TextField style={{
+                                            // width: "250px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Terms" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            // width: "302px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Total Cost" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            // width: "302px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Jury Root" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            // width: "302px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Jury Number" variant="outlined" />
+                                    </Grid>
                                     <Grid item xs={0}>
                                         <Button style={{
                                             backgroundColor: "#100F15",
                                             color: '#FFFFFF',
-                                            width: "180px",
+                                            width: "200px",
                                             height: "55px",
                                             fontSize: "14px",
                                             textTransform: "none"
                                         }}
-                                            variant="contained">View Relation</Button>
+                                            variant="contained">Place Order</Button>
                                     </Grid>
                                 </Grid>
                             </Container>
 
                             <Container maxWidth='md' style={{
-                                marginTop: '40px',
+                                marginTop: '20px',
                             }}>
                                 <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Register as a Juror
+                                    Shipment Received
                                 </Typography>
                                 <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Order Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Confirm</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+
+                            <Container maxWidth='md' style={{
+                                marginTop: '20px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Lodge Conflict
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            // width: "302px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Order Key" variant="outlined" />
+                                    </Grid>
                                     <Grid item xs={0} >
                                         <TextField style={{
-                                            width: "250px",
+                                            // width: "302px",
+                                            // height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                            multiline:"true"
+                                        }}
+                                           multiline="true" id="outlined-basic" label="Conflict Link" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Lodge</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+
+                            <Container maxWidth='md' style={{
+                                marginTop: '20px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Defend Conflict
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Defense Link" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Defend</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+                            
+
+
+                        
+                         
+
+                            
+{/* seller */}
+                            <Container maxWidth='md' style={{
+                                marginTop: '100px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Accept Order
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Order Key" variant="outlined" />
+                                    </Grid>
+                                    
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Approve</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+{/* seller */}
+                            <Container maxWidth='md' style={{
+                                marginTop: '20px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Shipment Patched
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Order Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Confirm</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+
+                            
+                            
+                            
+                            <Container maxWidth='md' style={{
+                                marginTop: '80px',
+                                
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Vote on Conflict
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "200px",
                                             height: "55px",
                                             fontSize: "14px",
                                             backgroundColor: "#FFFFFF",
@@ -262,6 +478,29 @@ const App = () => {
                                             id="outlined-basic" label="Juror Key" variant="outlined" />
                                     </Grid>
                                     <Grid item xs={0}>
+                                    <TextField
+                                        id="outlined-basic"
+                                        variant = "outlined"
+                                        select
+                                        label="Vote"
+                                        // value={vote}
+                                        // onChange={handleChange}
+                                        style = {{
+                                            width:"180x",
+                                            height:"55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }} 
+                                        >
+                                        {vote.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                            {option.label}
+                                            </MenuItem>
+                                            ))}
+                            </TextField>
+                                    </Grid>
+
+                                    <Grid item xs={2}>
                                         <Button style={{
                                             backgroundColor: "#100F15",
                                             color: '#FFFFFF',
@@ -270,10 +509,95 @@ const App = () => {
                                             fontSize: "14px",
                                             textTransform: "none"
                                         }}
-                                            variant="contained">Register</Button>
+                                            variant="contained">Vote</Button>
                                     </Grid>
                                 </Grid>
                             </Container>
+                            
+
+                            <Container maxWidth='md' style={{
+                                marginTop: '80px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Defend Conflict
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Defense Link" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Defend</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+
+                            <Container maxWidth='md' style={{
+                                marginTop: '80px',
+                            }}>
+                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
+                                    Defend Conflict
+                                </Typography>
+                                <Grid container spacing={0} align="center" justifyContent="center">
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <TextField style={{
+                                            width: "302px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            backgroundColor: "#FFFFFF",
+                                        }}
+                                            id="outlined-basic" label="Defense Link" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={0}>
+                                        <Button style={{
+                                            backgroundColor: "#100F15",
+                                            color: '#FFFFFF',
+                                            width: "200px",
+                                            height: "55px",
+                                            fontSize: "14px",
+                                            textTransform: "none"
+                                        }}
+                                            variant="contained">Defend</Button>
+                                    </Grid>
+                                </Grid>
+                            </Container>
+
+                            
+
+
+
+
 
                         </div>
                     </main>
