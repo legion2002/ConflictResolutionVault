@@ -1,15 +1,10 @@
-# Basic Sample Hardhat Project
+## Welcome To The Conflict Resolution Vault
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+1. Contract Deployed At - https://rinkeby.etherscan.io/address/0x8005E913892D8364F8C5A650b9C485Cd511EFBc1a
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Setup - 
+First run ``npm install``  
+To deploy contract run ``npx hardhat run scripts/deploy_script.js``, remember to change buyer and seller accounts in the deploy_script.js file to change the arguments you are sending to the constructor.
+To verify contract run 
+``` npx hardhat verify --network rinkeby CONTRACT_ADDRESS 
+CONSTRUCTOR_ARG_1 CONSTRUCTOR_ARG_2 ```

@@ -5,6 +5,7 @@ import { Typography, AppBar, MenuItem, Card, CardAction, CardContent, CardMedia,
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
 import { ethers } from "ethers";
+import { getmerklerootfromarray } from "./utilities/merklecreator";
 
 const categoryDB = [
     {
@@ -20,8 +21,9 @@ const categoryDB = [
         value: 3
     }
 ]
-
+console.log(getmerklerootfromarray([1, 2, 3, 4, 5]));
 const App = () => {
+    // console.log(getmerklerootfromarray(['0x9452839582759284', '0x83927385273528537528']));
     return (
         <>
 
