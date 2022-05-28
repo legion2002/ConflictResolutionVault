@@ -4,18 +4,16 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 
 
-contract Vault is ERC20, AccessControl {
+contract Vault is ERC20, AccessControl, ReentrancyGuard {
     
     event OrderCreated(uint8 indexed orderId, uint64 indexed orderTime, OrderStatus indexed status);
     event OrderCancelled(uint8 indexed orderId, uint64 indexed orderTime, OrderStatus indexed status);
     event OrderDelivered(uint8 indexed orderId, uint64 indexed orderTime, OrderStatus indexed status);
     event ConflictStarted(uint8 indexed conflictId, uint64 indexed conflictTime, ConflictStatus indexed status);
-
-
-
 
     /// @note remember to gas optimize later
     enum OrderStatus{
@@ -29,7 +27,8 @@ contract Vault is ERC20, AccessControl {
     enum ConflictStatus{
         NO_CONFLICT,
         CONFLICT_IN_PROGRESS,
-        CONFLICT_SETTLED,
+        CONFLICT_SETTLED_FOR_SELLER,
+        CONFLICT_SETTLED_FOR_BUYER,
         CONFLICT_CANCELLED
     }
     struct Order{
@@ -47,12 +46,17 @@ contract Vault is ERC20, AccessControl {
     struct Conflict{
         uint8 conflictId;
         ConflictStatus status;
+        uint64 conflictStartTime;
         string sellerProof;
-        string buyerProof;        
+        string buyerProof;    
+        uint64 sellerVotes;
+        uint64 buyerVotes;    
     }
 
     uint8 public nextOrderId = 0;
-    uint32 public conflictTimePeriod = 12 hours;
+    uint32 public constant conflictTimePeriod = 12 hours;
+    uint32 public constant resolutionTimePeriod  = 72 hours;
+
     address payable immutable seller;
     address payable immutable buyer; 
     bytes32 public constant SELLER_ROLE = keccak256("SELLER");
@@ -84,7 +88,7 @@ contract Vault is ERC20, AccessControl {
     }
 
     ///@dev Should be 12 hours after delivery time
-    function confirmPayout(uint8 orderId) public onlyRole(BUYER_ROLE){
+    function confirmPayout(uint8 orderId) public onlyRole(SELLER_ROLE){
         require(orders[orderId].status == OrderStatus.ORDER_DELIVERED, "Order must be delivered before payout");
         require(orders[orderId].deliveryTime + conflictTimePeriod < block.timestamp);
         orders[orderId].paidAmount = orders[orderId].promisedAmount;
@@ -108,6 +112,7 @@ contract Vault is ERC20, AccessControl {
         newConflict.conflictId = orderId;
         newConflict.status = ConflictStatus.CONFLICT_IN_PROGRESS;
         newConflict.sellerProof = conflictURI;
+        newConflict.conflictStartTime = uint64(block.timestamp);
         emit ConflictStarted(orderId,uint64(block.timestamp), ConflictStatus.CONFLICT_IN_PROGRESS);       
     }
 
@@ -118,18 +123,54 @@ contract Vault is ERC20, AccessControl {
         orders[orderId].status = OrderStatus.ACTIVE;
     }
 
-    function voteOnConflict(uint8 orderId, uint8 conflictId, bool vote) public{
+    ///@param vote 0 for seller, 1 for buyer
+    ///@param conflictId conflictId is always the same as orderId
+    function voteOnConflict(uint8 conflictId, bool vote) public{
+        require(orders[conflictId].status == OrderStatus.CONFLICT, "Order must be in CONFLICT state");
+        require(block.timestamp < conflicts[conflictId].conflictStartTime + resolutionTimePeriod, "Resolution Time Is Over");
+        require(conflicts[conflictId].status == ConflictStatus.CONFLICT_IN_PROGRESS, "Conflict must be in CONFLICT_IN_PROGRESS state");
+        if(vote){
+            conflicts[conflictId].sellerVotes++;
+        }
+        else{
+            conflicts[conflictId].buyerVotes++;
+        }    
+    }
+
+    function provideConflictProofBuyer(uint8 conflictId,string memory conflictURI) public onlyRole(BUYER_ROLE){
+        conflicts[conflictId].buyerProof = conflictURI;
+    }
+    function provideConflictProofSeller(uint8 conflictId,string memory conflictURI) public onlyRole(SELLER_ROLE){
+        conflicts[conflictId].sellerProof = conflictURI;
+    }
+
+    function payConflictResolutionFee(uint8 orderId) internal {
+
+
+    }
+
+    function settleConflict(uint8 orderId) public nonReentrant{
+        require(orders[orderId].status == OrderStatus.CONFLICT, "Order must be in CONFLICT state");
+        require(block.timestamp > conflicts[orderId].conflictStartTime + resolutionTimePeriod, "Resolution Time Is Not Over Yet");
+        bool result = conflicts[orderId].sellerVotes > conflicts[orderId].buyerVotes;
         
+        if(result){
+            orders[orderId].paidAmount = orders[orderId].promisedAmount;
+            orders[orderId].status = OrderStatus.ORDER_COMPLETE;
+            conflicts[orderId].status = ConflictStatus.CONFLICT_SETTLED_FOR_SELLER;
+            seller.transfer(orders[orderId].promisedAmount);
 
+        }
+        else{
+            orders[orderId].paidAmount = 0;
+            orders[orderId].status = OrderStatus.CANCELLED;
+            conflicts[orderId].status = ConflictStatus.CONFLICT_SETTLED_FOR_BUYER;
+            buyer.transfer(orders[orderId].promisedAmount);
+        }
+        payConflictResolutionFee(orderId);
     }
 
-    function settleConflict() public{
 
-    }
-
-    function cancelConflict() public{
-
-    }
     function buyerCancelsOrder() public{
 
     }
@@ -137,17 +178,5 @@ contract Vault is ERC20, AccessControl {
     function sellerCancelsOrder() public{
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
