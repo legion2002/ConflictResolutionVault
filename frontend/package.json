@@ -1,7 +1,7 @@
 {
   "name": "conflict_resolution_app",
   "version": "0.1.0",
-  "homepage" : ".",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -23,7 +23,7 @@
     "merkletreejs": "^0.2.31",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-app": "^5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
