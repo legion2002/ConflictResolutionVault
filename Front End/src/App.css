@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.box1 {
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border-radius: 10px;
+  padding-bottom: 10px;
+  padding-top:10px;
+  backdrop-filter: blur(2px);
+}
+
+.box2 {
+  margin: 0 auto;
+  width: 16rem;
+  height: 15rem;
+  background: rgba(16,18,27,0.4);
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+}
+
