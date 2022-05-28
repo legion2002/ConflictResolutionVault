@@ -26,10 +26,10 @@ const App = () => {
       
     
         <div>
-          <div style={{ background: "linear-gradient(#e66465, #9198e5)" }}>
+          <div style={{ background: "radial-gradient(#FF9A8B, #FF6A88)" }}>
             hello world
             <CssBaseline />
-            <AppBar style={{ background: '#9596E0' }}>
+            <AppBar style={{ background: 'radial-gradient(#FF99AD,#FF6A88)' }}>
             <Toolbar position="relative">
                     <Box
                         component="img"
@@ -44,7 +44,8 @@ const App = () => {
                                             width: "88px",
                                             height: "55px",
                                             fontSize: "18px",
-                                            fontFamily: "Montserrat",
+                                            fontFamily: "Sans-Serif",
+                                            textTransform:"None"
                                         }}
                                     variant="text" className = "element">Home</Button>
                             </Grid>
@@ -54,7 +55,8 @@ const App = () => {
                                             width: "110px",
                                             height: "55px",
                                             fontSize: "18px",
-                                            fontFamily: "Montserrat"
+                                            fontFamily: "Sans-Serif",
+                                            textTransform:"None"
                                         }}
                                     variant="text">Relations</Button>
                             </Grid>
@@ -64,7 +66,8 @@ const App = () => {
                                             width: "88px",
                                             height: "55px",
                                             fontSize: "18px",
-                                            fontFamily: "Montserrat"
+                                            fontFamily: "Sans-Serif",
+                                            textTransform:"None"
                                         }}
                                     variant="text">Dispute</Button>
                             </Grid>
@@ -74,7 +77,8 @@ const App = () => {
                                             width: "88px",
                                             height: "55px",
                                             fontSize: "18px",
-                                            fontFamily: "Montserrat"
+                                            fontFamily: "Sans-Serif",
+                                            textTransform:"None"
                                         }}
                                     variant="text">About</Button>
                             </Grid>
@@ -96,25 +100,28 @@ const App = () => {
             <Toolbar />
             <main>
             <div>
-                    <Container maxWidth="md" style={{
-                        marginTop: '80px',
-                        marginLeft: '20px'
+                    <Container maxWidth="md" className="box1" style={{
+                        marginTop: '20px',
+                        marginLeft: '20px',
                     }}>
-                        <Typography style={{ color:"#fff",fontWeight:550}} variant="h3" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
+                      
+                        <Typography style={{ color:"#242038",fontWeight:550}} variant="h3" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
                             What exactly is DeJury?
                         </Typography>
-                        <Typography style={{ color:"#fff",fontWeight:150}} variant="h6" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
+                        <Typography style={{ color:"#000",fontWeight:150}} variant="h6" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
                         De jure in law means "according to rightful claim/entitlement".  Similar to this concept we aim to build a quick conflict resolution mechanism in tandem with free business flow. Further we wish to create an on-chain reputation for both the buyer, the seller and the jury (more on this later)
+                        
                         </Typography>
                     </Container>
-                    <Container maxWidth="md" style={{
+                  
+                    <Container maxWidth="md" className="box1" style={{
                         marginTop: '30px',
                         marginRight: '20px'
                     }}>
-                        <Typography style={{ color:"#fff",fontWeight:550}} variant="h3" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
+                        <Typography style={{ color:"#242038",fontWeight:550}} variant="h3" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
                             Problem for Businesses
                         </Typography>
-                        <Typography style={{ color:"#fff",fontWeight:150}} variant="h6" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
+                        <Typography style={{ color:"#000",fontWeight:150}} variant="h6" color="common.white" justifyContent = "center" align = "center" position="relative" gutterBottom>
                         In Indian businesses, if there is a conflict between a buyer and seller (due to poor delivery, bad quality of products, etc.) then there may be a dispute with transactions.
 The only way to resolve such conflicts is either at a personal level or going for legal mechanisms.
 The issues with these conflict resolution mechanisms is that they are time consuming and that there might not be any legal constraint/agreement prior to the deal. 
