@@ -1,5 +1,6 @@
 import MetaMaskOnboarding from '@metamask/onboarding';
 import React from 'react';
+import { Button } from "@material-ui/core";
 
 const ONBOARD_TEXT = 'Click here to install MetaMask!';
 const CONNECT_TEXT = 'Connect';
@@ -55,8 +56,21 @@ export function OnboardingButton() {
         }
     };
     return (
-        <button disabled={isDisabled} onClick={onClick}>
-            {buttonText}
-        </button>
+        // <button disabled={isDisabled} onClick={onClick}>
+        //     {buttonText}
+        // </button>
+
+    <Button disabled={isDisabled} style={{
+        background: "linear-gradient(#8BC6EC, #9599E2)",
+        color: '#FFFFFF',
+        width: "200px",
+        height: "55px",
+        fontSize: "14px",
+        borderRadius: "25px",
+        textTransform:"none"
+
+    }} onClick={onClick}
+    variant="contained">{buttonText}</Button>
+
     );
 }

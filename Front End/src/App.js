@@ -3,6 +3,7 @@ import Logo from "./DeJury.svg";
 import "./App.css";
 import { Typography, AppBar, MenuItem, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
+import { ethers } from "ethers";
 
 const categoryDB = [
     {
