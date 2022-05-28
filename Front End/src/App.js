@@ -143,7 +143,7 @@ The issues with these conflict resolution mechanisms is that they are time consu
                                                 height: "55px",
                                                 fontSize: "14px",
                                                 borderRadius: "25px",
-                                      
+                                                textTransform:"none"
                                 
                                             }}
                                         variant="contained">Connect Metamask</Button>
@@ -191,7 +191,8 @@ The issues with these conflict resolution mechanisms is that they are time consu
                                                 color: '#FFFFFF',
                                                 width: "200px",
                                                 height: "55px",
-                                                fontSize: "14px"
+                                                fontSize: "14px",
+                                                textTransform:"none"
                                             }}
                                         variant="contained">Create Relation</Button>
                         </Grid>
@@ -228,7 +229,8 @@ The issues with these conflict resolution mechanisms is that they are time consu
                                                 color: '#FFFFFF',
                                                 width: "180px",
                                                 height: "55px",
-                                                fontSize: "14px"
+                                                fontSize: "14px",
+                                                textTransform:"none"
                                             }}
                                         variant="contained">View Relation</Button>
                         </Grid>
@@ -257,7 +259,8 @@ The issues with these conflict resolution mechanisms is that they are time consu
                                                 color: '#FFFFFF',
                                                 width: "180px",
                                                 height: "55px",
-                                                fontSize: "14px"
+                                                fontSize: "14px",
+                                                textTransform:"none"
                                             }}
                                         variant="contained">Register</Button>
                         </Grid>
