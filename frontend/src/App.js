@@ -153,7 +153,7 @@ const App = () => {
                                     </Grid>
                                 </Grid>
                             </Container>
-
+{/* @note: deploy contract and create order   */}
                             <Container maxWidth='md' style={{
                                 marginTop: '80px',
                             }}>
