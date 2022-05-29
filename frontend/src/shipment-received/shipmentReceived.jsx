@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { ethers } from "ethers";
 // import { bytecode } from "./bytecode"
-// import { _abi } from "./abiConstants"
+import { _abi } from "../contract-deployment/abiConstants"
 
 export function ShipmentReceived() {
   const [orderKey, setOrderKey] = useState(""); 
@@ -26,10 +26,69 @@ export function ShipmentReceived() {
   
   const handleSubmit = () => {
     console.log(orderKey);
+    interactContract();
     // console.log(sellerKey);
     // console.log(jurors);
     // deployContract();
   }
+
+  const interactContract = async () => {
+      if (ethereum) {
+        // const parsedAmount = ethers.utils.parseEther(amount);
+
+        if(!window.ethereum) {
+          console.log("WTF WTF WTF");
+        }
+
+        // // verify toAddress
+        // if(!ethers.utils.isAddress(addressTo)) {
+        //   console.log("INVALID TO ADDRESS!");
+        //   alert("INVALID TO ADDRESS!");
+        //   return;
+        // }
+
+        const current_contract_address = localStorage.getItem("current_contract_address");
+
+        if(!current_contract_address || !ethers.utils.isAddress(current_contract_address)) {
+          console.log("Deploy Contract First!");
+          alert("No Contract Deploy");
+          return;
+        }
+
+        console.log(current_contract_address);
+        const abi = _abi;
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(current_contract_address, abi, signer);
+
+        try {
+          const senderAdress = await signer.getAddress();
+          console.log("SENDER ADDDDDRRR: " + senderAdress);
+
+          console.log("CONTRACT ADDRESS: " + contract.address);
+
+          const shipment_received_tx = await contract.confirmPayout(orderKey);          
+
+
+          // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);
+          console.log("shipment_received_tx is ", shipment_received_tx)
+          console.log("interact received ", await shipment_received_tx.wait());
+        }
+        catch (error) {
+          console.log(error);
+          alert("Invalid recipient", "error")
+          return;
+        }
+
+
+        alert("Shipment Received Sent", "success")
+        // console.log("FIRST SENT");
+
+      } else {
+        console.log("No ethereum object  HELLLLLLLLO");
+      }
+
+  };
 
 
   return (
