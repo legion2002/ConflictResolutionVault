@@ -96,7 +96,7 @@ contract Vault is ReentrancyGuard, AccessControl {
         require(orders[orderId].deliveryTime + conflictTimePeriod < block.timestamp);
         orders[orderId].paidAmount = orders[orderId].promisedAmount;
         orders[orderId].status = OrderStatus.ORDER_COMPLETE;
-        buyer.transfer(orders[orderId].promisedAmount);        
+        seller.transfer(orders[orderId].promisedAmount);        
     }
 
     
@@ -114,7 +114,7 @@ contract Vault is ReentrancyGuard, AccessControl {
         Conflict storage newConflict = conflicts[orderId];
         newConflict.conflictId = orderId;
         newConflict.status = ConflictStatus.CONFLICT_IN_PROGRESS;
-        newConflict.sellerProof = conflictURI;
+        newConflict.buyerProof = conflictURI;
         newConflict.conflictStartTime = uint64(block.timestamp);
         emit ConflictStarted(orderId,uint64(block.timestamp), ConflictStatus.CONFLICT_IN_PROGRESS);       
     }
