@@ -3,18 +3,18 @@ import React, { useState } from "react";
 import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { ethers } from "ethers";
 
-export function LodgeConflictForm() {
-  const [orderKey, setOrderKey] = useState(""); 
-  const [conflictLink, setConflictLink] = useState(""); 
+export function DefendConflictForm() {
+  const [conflictKey, setConflictKey] = useState(""); 
+  const [defenceLink, setDefenceLink] = useState(""); 
   // const [jurors, setJurors] = useState(""); 
 
   const { ethereum } = window;
 
-  const onOrderChange = (e) => {
-    setOrderKey(e.target.value);
+  const onConflictKeyChange = (e) => {
+    setConflictKey(e.target.value);
     // console.log("ASda" + e.target.value);
   }
-  const onConflictLinkChange = (e) => setConflictLink(e.target.value);
+  const onDefenceLinkChange = (e) => setDefenceLink(e.target.value);
   // const jurorsChange = (e) => setJurors(e.target.value);
 
   // const deployContract = () => {
@@ -23,8 +23,8 @@ export function LodgeConflictForm() {
   // };
   
   const handleSubmit = () => {
-    console.log(orderKey);
-    console.log(conflictLink);
+    console.log(conflictKey);
+    console.log(defenceLink);
 
   }
 
@@ -48,29 +48,28 @@ export function LodgeConflictForm() {
         marginTop: '20px',
     }}>
         <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-            Lodge Conflict
+            Defend Conflict
         </Typography>
         <Grid container spacing={0} align="center" justifyContent="center">
             <Grid item xs={0}>
                 <TextField style={{
-                    // width: "302px",
-                    // height: "55px",
+                    width: "302px",
+                    height: "55px",
                     fontSize: "14px",
                     backgroundColor: "#FFFFFF",
                 }}
-                    id="outlined-basic" label="Order Key" variant="outlined" 
-                    onChange={onOrderChange}/>
+                    id="outlined-basic" label="Conflict Key" variant="outlined" 
+                    onChange={onConflictKeyChange}/>
             </Grid>
-            <Grid item xs={0} >
+            <Grid item xs={0}>
                 <TextField style={{
-                    // width: "302px",
-                    // height: "55px",
+                    width: "302px",
+                    height: "55px",
                     fontSize: "14px",
                     backgroundColor: "#FFFFFF",
-                    multiline:"true"
                 }}
-                    multiline="true" id="outlined-basic" label="Conflict Link" variant="outlined" 
-                    onChange={onConflictLinkChange}/>
+                    id="outlined-basic" label="Defence Link" variant="outlined" 
+                    onChange={onDefenceLinkChange}/>
             </Grid>
             <Grid item xs={0}>
                 <Button style={{
@@ -82,7 +81,7 @@ export function LodgeConflictForm() {
                     textTransform: "none"
                 }}
                     variant="contained"
-                    onClick={handleSubmit}>Lodge</Button>
+                    onClick={handleSubmit}>Defend</Button>
             </Grid>
         </Grid>
     </Container>

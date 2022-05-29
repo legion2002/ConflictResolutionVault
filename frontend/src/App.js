@@ -4,8 +4,17 @@ import "./App.css";
 import { Typography, AppBar, MenuItem,InputLabel,Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
-import { ethers } from "ethers";
+import { ShipmentReceived } from "./shipment-received/ShipmentReceived";
+import { CreateNewOrderForm } from "./create-new-order/CreateNewOrder";
+import { LodgeConflictForm } from "./lodge-conflict/LodgeConflict";
+import { DefendConflictForm } from "./defend-conflict/DefendConflict";
+import { DefendConflictForm1 } from "./defend-conflict-1/DefendConflict";
+import { AcceptOrderForm } from "./accept-order/AcceptOrder";
+
+
+import { ethers } from "ethers"
 import { getmerklerootfromarray } from "./utilities/merklecreator";
+import { ShipmentPatchedForm } from "./shipment-patched/ShipmentPatched";
 
 const vote = [
     {
@@ -158,264 +167,37 @@ const App = () => {
 
 {/* buyer */}
                             <ContractDeployForm></ContractDeployForm>
+                            {/* create vault */}
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '20px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Create New Order
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "50px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Buyer Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0} >
-                                        <TextField style={{
-                                            // width: "50px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Seller Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0} >
-                                        <TextField style={{
-                                            // width: "250px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Terms" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Total Cost" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Jury Root" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Jury Number" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Place Order</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
+                            <CreateNewOrderForm></CreateNewOrderForm>
+                            {/* create new order */}
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '20px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Shipment Received
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Order Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Confirm</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
+                            <ShipmentReceived></ShipmentReceived>
+                            {/* shipment received */}
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '20px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Lodge Conflict
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Order Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0} >
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                            multiline:"true"
-                                        }}
-                                           multiline="true" id="outlined-basic" label="Conflict Link" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Lodge</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
+                            <LodgeConflictForm></LodgeConflictForm>
+                            {/* lodge conflict */}
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '20px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Defend Conflict
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Defense Link" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Defend</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-                            
+                            <DefendConflictForm></DefendConflictForm>
 
-
-                        
-                         
-
+                            {/* defend conflict */}
                             
 {/* seller */}
+
+                            <AcceptOrderForm></AcceptOrderForm>
+
+                            {/* accept order */}
+
+                            <ShipmentPatchedForm></ShipmentPatchedForm>
+                            
+                            {/* shipment patched */}
+
+                            <DefendConflictForm1></DefendConflictForm1>
+
+                            {/* defend conflict 1 */}
+
                             <Container maxWidth='md' style={{
                                 marginTop: '100px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Accept Order
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Order Key" variant="outlined" />
-                                    </Grid>
-                                    
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Approve</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-{/* seller */}
-                            <Container maxWidth='md' style={{
-                                marginTop: '20px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Shipment Patched
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Order Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Confirm</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-
-                            
-                            
-                            
-                            <Container maxWidth='md' style={{
-                                marginTop: '80px',
                                 
                             }}>
                                 <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
@@ -463,7 +245,7 @@ const App = () => {
                             </TextField>
                                     </Grid>
 
-                                    <Grid item xs={2}>
+                                    <Grid item xs={0}>
                                         <Button style={{
                                             backgroundColor: "#100F15",
                                             color: '#FFFFFF',
@@ -477,49 +259,6 @@ const App = () => {
                                 </Grid>
                             </Container>
                             
-
-                            <Container maxWidth='md' style={{
-                                marginTop: '80px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Defend Conflict
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Defense Link" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Defend</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-
-    
-
-
                         </div>
                     </main>
                 </div>

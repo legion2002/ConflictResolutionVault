@@ -138,7 +138,7 @@ export function ContractDeployForm() {
 
 
     <Container maxWidth='md' style={{
-        marginTop: '80px',
+        marginTop: '20px',
     }}>
         <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
             Create Vault
