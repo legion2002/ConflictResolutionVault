@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "./DeJury.svg";
 import "./App.css";
-import { Typography, AppBar, MenuItem,InputLabel,Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
+import { Typography, AppBar, MenuItem, InputLabel, Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
-import { ShipmentReceived } from "./shipment-received/ShipmentReceived";
+import { ShipmentReceived } from "./shipment-received/shipmentReceived";
 import { CreateNewOrderForm } from "./create-new-order/CreateNewOrder";
 import { LodgeConflictForm } from "./lodge-conflict/LodgeConflict";
 import { DefendConflictForm } from "./defend-conflict/DefendConflict";
@@ -163,13 +163,13 @@ const App = () => {
                                     </Grid>
                                 </Grid>
                             </Container>
-{/* @note: deploy contract and create order   */}
+                            {/* @note: deploy contract and create order   */}
 
                             <ContractDeployForm></ContractDeployForm>
 
                             {/* create vault */}
 
-{/* buyer */}
+                            {/* buyer */}
 
                             <CreateNewOrderForm></CreateNewOrderForm>
 
@@ -180,33 +180,33 @@ const App = () => {
                             {/* shipment received */}
 
                             <LodgeConflictForm></LodgeConflictForm>
-                            
+
                             {/* lodge conflict */}
 
                             <DefendConflictForm></DefendConflictForm>
 
                             {/* defend conflict */}
-                            
-{/* seller */}
+
+                            {/* seller */}
 
                             <AcceptOrderForm></AcceptOrderForm>
 
                             {/* accept order */}
 
                             <ShipmentPatchedForm></ShipmentPatchedForm>
-                            
+
                             {/* shipment patched */}
 
                             <DefendConflictForm1></DefendConflictForm1>
 
                             {/* defend conflict 1 */}
 
-{/* juror */}
+                            {/* juror */}
 
                             <VoteOnConflictForm></VoteOnConflictForm>
 
                             {/* vote on conflict */}
-                            
+
                         </div>
                     </main>
                 </div>
