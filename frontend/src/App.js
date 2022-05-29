@@ -4,7 +4,7 @@ import "./App.css";
 import { Typography, AppBar, MenuItem, InputLabel, Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
-import { ShipmentReceived } from "./shipment-received/shipmentReceived";
+import { ShipmentReceived } from "./shipment-received/ShipmentReceived";
 import { CreateNewOrderForm } from "./create-new-order/CreateNewOrder";
 import { LodgeConflictForm } from "./lodge-conflict/LodgeConflict";
 import { DefendConflictForm } from "./defend-conflict/DefendConflict";
