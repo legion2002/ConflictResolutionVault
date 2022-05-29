@@ -57,7 +57,7 @@ export function VoteOnConflictForm() {
 
 
     <Container maxWidth='md' style={{
-        marginTop: '100px',
+        marginTop: '30px',
         
     }}>
         <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>

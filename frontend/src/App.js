@@ -4,7 +4,7 @@ import "./App.css";
 import { Typography, AppBar, MenuItem, InputLabel, Select, Card, CardAction, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container, Button, Box, TextField } from "@material-ui/core";
 import { OnboardingButton } from "./context/TransactionContext";
 import { ContractDeployForm } from "./contract-deployment/ContractDeployment";
-import { ShipmentReceived } from "./shipment-received/ShipmentReceived";
+import { ShipmentReceived } from "./shipment-received/shipmentReceived";
 import { CreateNewOrderForm } from "./create-new-order/CreateNewOrder";
 import { LodgeConflictForm } from "./lodge-conflict/LodgeConflict";
 import { DefendConflictForm } from "./defend-conflict/DefendConflict";
@@ -166,7 +166,7 @@ const App = () => {
                             {/* @note: deploy contract and create order   */}
 
                             <ContractDeployForm></ContractDeployForm>
-
+                            <hr width="69%" color="#000" style = {{marginTop:"20px"}} />
                             {/* create vault */}
 
                             {/* buyer */}
@@ -187,6 +187,8 @@ const App = () => {
 
                             {/* defend conflict */}
 
+                            <hr width="69%" color="#000" style = {{marginTop:"20px"}} />
+                            
                             {/* seller */}
 
                             <AcceptOrderForm></AcceptOrderForm>
@@ -200,11 +202,11 @@ const App = () => {
                             <DefendConflictForm1></DefendConflictForm1>
 
                             {/* defend conflict 1 */}
-
+                            <hr width="69%" color="#000" style = {{marginTop:"20px"}} />
                             {/* juror */}
 
                             <VoteOnConflictForm></VoteOnConflictForm>
-
+                            <footer style = {{background: "radial-gradient(#FF99AD,#FF6A88)", marginTop: "30px",}}><Typography style={{ color: "#242038", fontWeight: 550 }} variant="h6" color="common.white" justifyContent="center" align="center" position="relative" >Made with &lt;3 from Abhik S Basu, Anindya Prithvi,Niranjan Sundararajan,Tanishk Goyal, Vibhu Dubey</Typography> </footer>
                             {/* vote on conflict */}
 
                         </div>
