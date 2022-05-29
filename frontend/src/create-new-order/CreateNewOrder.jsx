@@ -12,6 +12,7 @@ export function CreateNewOrderForm() {
   const [totalCost, setTotalCost] = useState("");
   const [juryAddrs, setJuryAddrs] = useState("");
   const [juryNumber, setJuryNumber] = useState("");
+  const [valueOfTrans, setValueOfTrans] = useState("");
   // const [jurors, setJurors] = useState(""); 
 
   const { ethereum } = window;
@@ -29,6 +30,7 @@ export function CreateNewOrderForm() {
   const onTotalCostChange = (e) => setTotalCost(e.target.value);
   const onJuryAddrsChange = (e) => setJuryAddrs(e.target.value);
   const onJuryNumberChange = (e) => setJuryNumber(e.target.value);
+  const onValueOfTransChange = (e) => setValueOfTrans(e.target.value);
 
 
   const handleSubmit = () => {
@@ -38,6 +40,7 @@ export function CreateNewOrderForm() {
     console.log(totalCost);
     console.log(juryAddrs.split(','));
     console.log(juryNumber);
+    console.log(valueOfTrans)
     // deployContract();
     interactContract();
   }
@@ -80,7 +83,7 @@ export function CreateNewOrderForm() {
 
         const create_new_order_tx = await contract.startNewOrder(terms, ethers.utils.parseEther(totalCost), `0x${getmerklerootfromarray(juryAddrs.split(','))}`, juryNumber, {
           // gasLimit: 100000,
-          value: ethers.utils.parseEther("0.1")
+          value: ethers.utils.parseEther(valueOfTrans)
         });
 
 
@@ -164,7 +167,7 @@ export function CreateNewOrderForm() {
             fontSize: "14px",
             backgroundColor: "#FFFFFF",
           }}
-            id="outlined-basic" label="Total Cost" variant="outlined"
+            id="outlined-basic" label="Jury Premium" variant="outlined"
             onChange={onTotalCostChange} />
         </Grid>
         <Grid item xs={0}>
@@ -174,7 +177,7 @@ export function CreateNewOrderForm() {
             fontSize: "14px",
             backgroundColor: "#FFFFFF",
           }}
-            id="outlined-basic" label="Jury Root" variant="outlined"
+            id="outlined-basic" label="Jury (comma seperated)" variant="outlined"
             onChange={onJuryAddrsChange} />
         </Grid>
         <Grid item xs={0}>
@@ -184,8 +187,18 @@ export function CreateNewOrderForm() {
             fontSize: "14px",
             backgroundColor: "#FFFFFF",
           }}
-            id="outlined-basic" label="Jury Number" variant="outlined"
+            id="outlined-basic" label="Jury size" variant="outlined"
             onChange={onJuryNumberChange} />
+        </Grid>
+        <Grid item xs={0}>
+          <TextField style={{
+            // width: "302px",
+            // height: "55px",
+            fontSize: "14px",
+            backgroundColor: "#FFFFFF",
+          }}
+            id="outlined-basic" label="Money to promise" variant="outlined"
+            onChange={onValueOfTransChange} />
         </Grid>
         <Grid item xs={0}>
           <Button style={{
