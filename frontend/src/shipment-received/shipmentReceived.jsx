@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { bytecode } from "./bytecode"
 import { _abi } from "./abiConstants"
 
-export function ContractDeployForm() {
+export function shipmentReceived() {
   const [buyerKey, setBuyerKey] = useState(""); 
   const [sellerKey, setSellerKey] = useState(""); 
   // const [jurors, setJurors] = useState(""); 
@@ -118,7 +118,7 @@ export function ContractDeployForm() {
     console.log(buyerKey);
     console.log(sellerKey);
     // console.log(jurors);
-    deployContract();
+    // deployContract();
   }
 
 

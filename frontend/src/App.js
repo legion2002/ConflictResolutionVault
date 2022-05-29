@@ -155,47 +155,10 @@ const App = () => {
                                 </Grid>
                             </Container>
 {/* @note: deploy contract and create order   */}
-                            <Container maxWidth='md' style={{
-                                marginTop: '80px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Create Vault 
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Buyer Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0} >
-                                        <TextField style={{
-                                            // width: "302px",
-                                            // height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Seller Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Create Relation</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
 
 {/* buyer */}
                             <ContractDeployForm></ContractDeployForm>
+
                             <Container maxWidth='md' style={{
                                 marginTop: '20px',
                             }}>
@@ -554,49 +517,7 @@ const App = () => {
                                 </Grid>
                             </Container>
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '80px',
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Defend Conflict
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "302px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Defense Link" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Defend</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
-
-                            
-
-
-
+    
 
 
                         </div>

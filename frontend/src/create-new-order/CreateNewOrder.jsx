@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { bytecode } from "./bytecode"
 import { _abi } from "./abiConstants"
 
-export function ContractDeployForm() {
+export function CreateNewOrderForm() {
   const [buyerKey, setBuyerKey] = useState(""); 
   const [sellerKey, setSellerKey] = useState(""); 
   // const [jurors, setJurors] = useState(""); 
