@@ -2,6 +2,7 @@ import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
 import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { ethers } from "ethers";
+import { _abi } from "../contract-deployment/abiConstants"
 
 export function LodgeConflictForm() {
   const [orderKey, setOrderKey] = useState(""); 

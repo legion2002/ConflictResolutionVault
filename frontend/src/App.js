@@ -10,22 +10,22 @@ import { LodgeConflictForm } from "./lodge-conflict/LodgeConflict";
 import { DefendConflictForm } from "./defend-conflict/DefendConflict";
 import { DefendConflictForm1 } from "./defend-conflict-1/DefendConflict";
 import { AcceptOrderForm } from "./accept-order/AcceptOrder";
-
+import { ShipmentPatchedForm } from "./shipment-patched/ShipmentPatched";
+import { VoteOnConflictForm } from "./vote-on-conflict/VoteOnConflict";
 
 import { ethers } from "ethers"
 import { getmerklerootfromarray } from "./utilities/merklecreator";
-import { ShipmentPatchedForm } from "./shipment-patched/ShipmentPatched";
 
-const vote = [
-    {
-      value: '1',
-      label: 'Buyer',
-    },
-    {
-      value: '0',
-      label: 'Seller',
-    },
-  ];
+// const vote = [
+//     {
+//       value: '1',
+//       label: 'Buyer',
+//     },
+//     {
+//       value: '0',
+//       label: 'Seller',
+//     },
+//   ];
 
 
 console.log(getmerklerootfromarray([1, 2, 3, 4, 5]));
@@ -165,17 +165,22 @@ const App = () => {
                             </Container>
 {/* @note: deploy contract and create order   */}
 
-{/* buyer */}
                             <ContractDeployForm></ContractDeployForm>
+
                             {/* create vault */}
 
+{/* buyer */}
+
                             <CreateNewOrderForm></CreateNewOrderForm>
+
                             {/* create new order */}
 
                             <ShipmentReceived></ShipmentReceived>
+
                             {/* shipment received */}
 
                             <LodgeConflictForm></LodgeConflictForm>
+                            
                             {/* lodge conflict */}
 
                             <DefendConflictForm></DefendConflictForm>
@@ -196,68 +201,11 @@ const App = () => {
 
                             {/* defend conflict 1 */}
 
-                            <Container maxWidth='md' style={{
-                                marginTop: '100px',
-                                
-                            }}>
-                                <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
-                                    Vote on Conflict
-                                </Typography>
-                                <Grid container spacing={0} align="center" justifyContent="center">
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Conflict Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                        <TextField style={{
-                                            width: "200px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                            id="outlined-basic" label="Juror Key" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={0}>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant = "outlined"
-                                        select
-                                        label="Vote"
-                                        // value={vote}
-                                        // onChange={handleChange}
-                                        style = {{
-                                            width:"180x",
-                                            height:"55px",
-                                            fontSize: "14px",
-                                            backgroundColor: "#FFFFFF",
-                                        }} 
-                                        >
-                                        {vote.map((option) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                            </MenuItem>
-                                            ))}
-                            </TextField>
-                                    </Grid>
+{/* juror */}
 
-                                    <Grid item xs={0}>
-                                        <Button style={{
-                                            backgroundColor: "#100F15",
-                                            color: '#FFFFFF',
-                                            width: "180px",
-                                            height: "55px",
-                                            fontSize: "14px",
-                                            textTransform: "none"
-                                        }}
-                                            variant="contained">Vote</Button>
-                                    </Grid>
-                                </Grid>
-                            </Container>
+                            <VoteOnConflictForm></VoteOnConflictForm>
+
+                            {/* vote on conflict */}
                             
                         </div>
                     </main>

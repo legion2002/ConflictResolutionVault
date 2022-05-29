@@ -30,7 +30,7 @@ export function ContractDeployForm() {
         // const parsedAmount = ethers.utils.parseEther(amount);
 
         if(!window.ethereum) {
-          console.log("WTF WTF WTF");
+          console.log("problems");
         }
 
         // verify buyerAddress
@@ -138,7 +138,7 @@ export function ContractDeployForm() {
 
 
     <Container maxWidth='md' style={{
-        marginTop: '20px',
+        marginTop: '40px',
     }}>
         <Typography style={{ color: "#242038", fontWeight: 550 }} variant="h3" color="common.white" justifyContent="center" align="center" position="relative" gutterBottom>
             Create Vault

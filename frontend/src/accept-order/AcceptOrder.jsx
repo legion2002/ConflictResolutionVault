@@ -4,6 +4,7 @@ import { Button, Grid, Container, Typography } from "@material-ui/core";
 import { ethers } from "ethers";
 // import { bytecode } from "./bytecode"
 // import { _abi } from "./abiConstants"
+import { _abi } from "../contract-deployment/abiConstants"
 
 export function AcceptOrderForm() {
   const [orderKey, setOrderKey] = useState(""); 
