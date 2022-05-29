@@ -64,7 +64,7 @@ export function LodgeConflictForm() {
 
           console.log("CONTRACT ADDRESS: " + contract.address);
 
-          const lodge_conflict_tx = await contract.lodgeConflict(orderKey, conflictLink);          
+          const lodge_conflict_tx = await contract.lodgeConflict(parseInt(orderKey), conflictLink);          
 
 
           // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);

@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 // import { bytecode } from "./bytecode"
 // import { _abi } from "./abiConstants"
 import { _abi } from "../contract-deployment/abiConstants"
+import { parseUnits } from "ethers/lib/utils";
 
 export function AcceptOrderForm() {
   const [orderKey, setOrderKey] = useState(""); 
@@ -68,7 +69,7 @@ export function AcceptOrderForm() {
 
         console.log("CONTRACT ADDRESS: " + contract.address);
 
-        const accept_order_tx = await contract.acceptOrder(orderKey);          
+        const accept_order_tx = await contract.acceptOrder(parseInt(orderKey));          
 
 
         // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);

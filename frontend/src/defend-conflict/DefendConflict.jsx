@@ -63,7 +63,7 @@ export function DefendConflictForm() {
 
         console.log("CONTRACT ADDRESS: " + contract.address);
 
-        const defend_conflict_buyer_tx = await contract.provideConflictProofBuyer(conflictKey, defenceLink);          
+        const defend_conflict_buyer_tx = await contract.provideConflictProofBuyer(parseInt(conflictKey), defenceLink);          
 
 
         // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);
