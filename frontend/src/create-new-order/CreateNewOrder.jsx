@@ -79,7 +79,8 @@ export function CreateNewOrderForm() {
         console.log("CONTRACT ADDRESS: " + contract.address);
 
         const create_new_order_tx = await contract.startNewOrder(terms, ethers.utils.parseEther(totalCost), `0x${getmerklerootfromarray(juryAddrs.split(','))}`, juryNumber, {
-          gasLimit: 100000,
+          // gasLimit: 100000,
+          value: ethers.utils.parseEther("0.1")
         });
 
 
