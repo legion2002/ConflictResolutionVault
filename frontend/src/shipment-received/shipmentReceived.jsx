@@ -67,7 +67,7 @@ export function ShipmentReceived() {
 
           console.log("CONTRACT ADDRESS: " + contract.address);
 
-          const shipment_received_tx = await contract.confirmPayout(orderKey);          
+          const shipment_received_tx = await contract.confirmPayout(parseInt(orderKey));          
 
 
           // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);

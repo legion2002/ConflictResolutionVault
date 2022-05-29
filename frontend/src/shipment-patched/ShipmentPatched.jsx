@@ -67,7 +67,7 @@ export function ShipmentPatchedForm() {
 
           console.log("CONTRACT ADDRESS: " + contract.address);
 
-          const shipment_patched_tx = await contract.deliverAndRequestPayout(orderKey);          
+          const shipment_patched_tx = await contract.deliverAndRequestPayout(parseInt(orderKey));          
 
 
           // const pay_tx = await contract.payMoneyTo(addressTo, parsedAmount);

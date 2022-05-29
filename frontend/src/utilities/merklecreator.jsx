@@ -13,6 +13,7 @@ export function getmerklerootfromarray(fromarray) {
     const tree = new MerkleTree(leaves, SHA256)
     console.log(tree);
     const root = tree.getRoot().toString('hex')
+    console.log(`root is ${root}`);
     return root
 }
 
